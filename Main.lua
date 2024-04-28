@@ -39,7 +39,7 @@ if Loader.StatusCode == 200 then
     gui:SetCore("SendNotification", {
         Icon = "rbxassetid://17118793438";
         Title = "User", 
-        Text = "Has Executed by" .. Executor()
+        Text = " Has Executed by" .. Executor()
     }
 )
 	print(p)
