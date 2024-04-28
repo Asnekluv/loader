@@ -42,6 +42,7 @@ if Loader.StatusCode == 200 then
         Text = "Has Executed by" .. Executor()
     }
 )
+	print(p)
 loadstring(Loader.Body)()
 elseif Loader.StatusCode == 404 then
     game.Players.LocalPlayer:Kick("Script is Discontinued")
