@@ -1,3 +1,13 @@
+--[[
+getgenv().Configs = {
+    dustytrip = {
+        ["Lite"] = false, -- ! true / false
+        ["Asuneki"] = false, -- ! true / false << pc or emu ver.
+        ["keybindDisply"] = false -- ! true / false << pc or emu ver.
+    }
+}
+--]]
+
 httprequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request;
 p = (game.gameId)
 gui = game.StarterGui;
