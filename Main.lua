@@ -1,5 +1,3 @@
-url = "https://asuneki.netlify.app/assets/Lua/"
-p = game.gameId
 httprequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
 function Time()
 	local HOUR = math.floor((tick() % 86400) / 3600)
@@ -22,14 +20,15 @@ local function Web()
     return(print(response.StatusCode))
 end
 Web()
-getgenv().x = {
-    [5650396773] = url .. "tipsy" .. ".lua", -- 🔴 Discontinued / stop update at 5/14/2024 🔴 \\ a dusty trip https://www.roblox.com/games/16389395869/a-dusty-trip
-    [5216419122] = url .. "gef" .. ".lua"
+
+local gamelist = {
+    [5650396773] = "https://asuneki.netlify.app/assets/Lua/tipsy.lua",
+    [5216419122] = "https://asuneki.netlify.app/assets/Lua/gef.lua"
 }
-local p = x[p]
-if x[p] then
-    print(p .. Time())
-    loadstring(game:HttpGet(p))()
+local checkgame = gamelist[game.gameId]
+if gamelist[game.gameId] then
+    print(checkgame)
+    loadstring(game:HttpGet(checkgame))()
 else
     repeat
         wait(1)
