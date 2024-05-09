@@ -23,7 +23,8 @@ local function Web()
 end
 Web()
 getgenv().x = {
-    [5650396773] = url .. "tipsy" .. ".lua" -- 🔴 Discontinued / no more update <3🔴 \\ a dusty trip https://www.roblox.com/games/16389395869/a-dusty-trip
+    [5650396773] = url .. "tipsy" .. ".lua", -- 🔴 Discontinued / stop update at 5/14/2024 🔴 \\ a dusty trip https://www.roblox.com/games/16389395869/a-dusty-trip
+    [5216419122] = url .. "gef" .. ".lua"
 }
 local p = x[p]
 if x[p] then
