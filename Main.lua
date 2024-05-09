@@ -25,6 +25,7 @@ local gamelist = {
     [5650396773] = "https://asuneki.netlify.app/assets/Lua/tipsy.lua",
     [5216419122] = "https://asuneki.netlify.app/assets/Lua/gef.lua"
 }
+-- 5216419122 walk speed not work
 local checkgame = gamelist[game.gameId]
 if gamelist[game.gameId] then
     print(checkgame)
