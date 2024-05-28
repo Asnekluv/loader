@@ -1,15 +1,4 @@
-httprequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
-function Time()
-	local HOUR = math.floor((tick() % 86400) / 3600)
-	local MINUTE = math.floor((tick() % 3600) / 60)
-	local SECOND = math.floor(tick() % 60)
-	local AP = HOUR > 11 and 'PM' or 'AM'
-	HOUR = (HOUR % 12 == 0 and 12 or HOUR % 12)
-	HOUR = HOUR < 10 and '0' .. HOUR or HOUR
-	MINUTE = MINUTE < 10 and '0' .. MINUTE or MINUTE
-	SECOND = SECOND < 10 and '0' .. SECOND or SECOND
-	return HOUR .. ':' .. MINUTE .. ':' .. SECOND .. ' ' .. AP
-end
+local httprequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
 local function Web()
     local response = httprequest({
         Url = "https://asuneki.netlify.app",
@@ -20,7 +9,6 @@ local function Web()
     return(print(response.StatusCode))
 end
 Web()
-
 local gamelist = {
     [5650396773] = "https://asuneki.netlify.app/assets/Lua/tipsy.lua",
     [5216419122] = "https://asuneki.netlify.app/assets/Lua/gef.lua",
