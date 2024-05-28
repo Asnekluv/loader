@@ -31,3 +31,5 @@ else
     )
     until game.Players.LocalPlayer.character:FindFirstChild("Humanoid").Health == 0
 end
+
+print("End.." .. tick())
