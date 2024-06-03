@@ -15,7 +15,6 @@ local gamelist = {
     [1335695570] = "https://asuneki.netlify.app/assets/Lua/Ninja%20Legends.lua" -- open source > Discontinue
 }
 
--- 5216419122 walk speed not work
 local checkgame = gamelist[game.gameId]
 if gamelist[game.gameId] then
     print(checkgame)
