@@ -1,4 +1,9 @@
+print("This Game Id is : "..game.gameId)
+
+-- variables
 local httprequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
+
+-- fucntion
 local function Web()
     local response = httprequest({
         Url = "https://asuneki.netlify.app",
@@ -6,30 +11,18 @@ local function Web()
     })
     assert(type(response) == "table", "Response must be a table")
     assert(response.StatusCode == 200, "Did not return a 200 status code")
-    return(print(response.StatusCode))
+    return(print("Server is on"))
 end
+
+repeat wait() until game:IsLoaded()
+
 Web()
-local gamelist = {
-    [5650396773] = "https://asuneki.netlify.app/assets/Lua/tipsy.lua",
-    [5216419122] = "https://asuneki.netlify.app/assets/Lua/gef.lua",
-    [1335695570] = "https://asuneki.netlify.app/assets/Lua/Ninja%20Legends.lua" -- open source > Discontinue
-}
-
-local checkgame = gamelist[game.gameId]
-if gamelist[game.gameId] then
-    print(checkgame)
-    loadstring(game:HttpGet(checkgame))()
+local a = httprequest({
+    Url = "https://asuneki.netlify.app/assets/Lua/"..game.gameId..".lua",
+    Method = "GET"
+})
+if a.StatusCode == 200 then
+    loadstring(a.Body)()
 else
-    repeat
-        wait(1)
-        gui = game.StarterGui
-        gui:SetCore("SendNotification", {
-        Icon = "rbxassetid://17118793438";
-        Title = "broken link", 
-        Text = "or forgot to upload file to server🔪🔪 ..."
-        }
-    )
-    until game.Players.LocalPlayer.character:FindFirstChild("Humanoid").Health == 0
+    game.Players.LocalPlayer:Kick("\n Not Have This Game")
 end
-
-print("End.." .. tick())
