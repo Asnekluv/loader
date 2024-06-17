@@ -839,7 +839,7 @@ RunService.RenderStepped:Connect(function()
                     if v.Name == "AncientMagmaBoss" and v:FindFirstChild("HumanoidRootPart") then
                         v.Humanoid:ChangeState(15)
                         v.Humanoid.Health = die
-                        sethidden(localPlayers, "SimulationRadius", math.huge)
+                        sethidden(lp, "SimulationRadius", math.huge)
                     end
                 end
             elseif getgenv().AttachBoss == "EternalBoss" then
@@ -848,7 +848,7 @@ RunService.RenderStepped:Connect(function()
                         v.Humanoid:ChangeState(15)
                         v.Humanoid.Health = die
                         v.Humanoid.Health = 0
-                        sethidden(localPlayers, "SimulationRadius", math.huge)
+                        sethidden(lp, "SimulationRadius", math.huge)
                     end
                 end
             elseif getgenv().AttachBoss == "RobotBoss" then
@@ -857,7 +857,7 @@ RunService.RenderStepped:Connect(function()
                         v.Humanoid:ChangeState(15)
                         v.Humanoid.Health = die
                         v.Humanoid.Health = 0
-                        sethidden(localPlayers, "SimulationRadius", math.huge)
+                        sethidden(lp, "SimulationRadius", math.huge)
                     end
                 end
             end
@@ -872,7 +872,7 @@ RunService.RenderStepped:Connect(function()
                     v.Humanoid:ChangeState(15)
                     v.Humanoid.Health = die
                     v.Humanoid.Health = 0
-                    sethidden(localPlayers, "SimulationRadius", math.huge)
+                    sethidden(lp, "SimulationRadius", math.huge)
                 end
             end
         end)
