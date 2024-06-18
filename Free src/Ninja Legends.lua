@@ -902,28 +902,24 @@ end)
 
 -- for config~
 spawn(function()
-    pcall(function()
-        if shared.Configs.Global_Setting.AntiAFK then
-            local GC = getconnections or get_signal_cons
-            if GC then
-                for i,v in pairs(GC(Players.LocalPlayer.Idled)) do
-                    if v["Disable"] then
-                        v["Disable"](v)
-                    elseif v["Disconnect"] then
-                        v["Disconnect"](v)
-                    end
-                end
-            else
-                Players.LocalPlayer.Idled:Connect(function()
-                    VirtualUser:CaptureController()
-                    VirtualUser:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
-                    wait(1)
-                    VirtualUser:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
-                    warn("Debug : AntiAFK")
-                end)
+    local GC = getconnections or get_signal_cons
+    if GC then
+        for i,v in pairs(GC(Players.LocalPlayer.Idled)) do
+            if v["Disable"] then
+                v["Disable"](v)
+            elseif v["Disconnect"] then
+                v["Disconnect"](v)
             end
         end
-    end)
+    else
+        Players.LocalPlayer.Idled:Connect(function()
+            VirtualUser:CaptureController()
+            VirtualUser:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+            wait(1)
+            VirtualUser:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+            warn("Debug : AntiAFK")
+        end)
+    end
 end)
 spawn(function()
     pcall(function()
