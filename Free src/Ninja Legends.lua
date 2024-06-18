@@ -203,6 +203,11 @@ function equiptool()
         end
     end
 end
+function Click()
+    game:GetService'VirtualUser':CaptureController()
+    game:GetService'VirtualUser':Button1Up(Vector2.new(1280, 672))
+    game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
+end
 function getRoot(char)
 	local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
 	return rootPart
@@ -613,7 +618,7 @@ UnlockIsland:OnChanged(function(v)
     while getgenv().Stacia_UnlockIsland do ktask.wait()
         pcall(function()
             local random2 = math.random(1 * 30)
-            globalEnv = Island2Unlock[random2]
+            local globalEnv = Island2Unlock[random2]
             for i,v in pairs(Workspace.islandUnlockParts[globalEnv]:GetDescendants()) do
                 if v.Name == "TouchInterest" and v.Parent then
                     firetouchinterest(lp.Character.Head, v.Parent, 0)
@@ -682,7 +687,7 @@ spawn(function()
 end)
 spawn(function()
     while ktask.wait() do
-        if Stacia_Selled then
+        if getgenv().Stacia_Selled then
             pcall(function()
                 for i,v in pairs(game:GetService("Workspace").sellAreaCircles:GetChildren()[20].circleInner:GetDescendants()) do
                     if v.Name == "TouchInterest" and v.Parent then
@@ -703,7 +708,7 @@ spawn(function()
 end)
 spawn(function()
     while ktask.wait() do
-        if Stacia_MaxSell then
+        if getgenv().Stacia_MaxSell then
             pcall(function()
                 if game.Players.LocalPlayer.PlayerGui.gameGui.maxNinjitsuMenu.Visible == true then
                     for i,v in pairs(game:GetService("Workspace").sellAreaCircles:GetChildren()[20].circleInner:GetDescendants()) do
@@ -762,8 +767,6 @@ spawn(function()
         end 
     end
 end)
-
--- bg
 spawn(function()
     while ktask.wait() do
         pcall(function()
@@ -805,8 +808,8 @@ end)
 -- other not main
 spawn(function()
 	while ktask.wait() do
-		TeleportType = math.random(1,5)
-		ktask.wait(0.3)
+		local TeleportType = math.random(1,5)
+		ktask.wait(0.7)
 	end
 end)
 
@@ -839,7 +842,7 @@ RunService.RenderStepped:Connect(function()
                     if v.Name == "AncientMagmaBoss" and v:FindFirstChild("HumanoidRootPart") then
                         v.Humanoid:ChangeState(15)
                         v.Humanoid.Health = die
-                        sethidden(localPlayers, "SimulationRadius", math.huge)
+                        sethidden(lp, "SimulationRadius", math.huge)
                     end
                 end
             elseif getgenv().AttachBoss == "EternalBoss" then
@@ -848,7 +851,7 @@ RunService.RenderStepped:Connect(function()
                         v.Humanoid:ChangeState(15)
                         v.Humanoid.Health = die
                         v.Humanoid.Health = 0
-                        sethidden(localPlayers, "SimulationRadius", math.huge)
+                        sethidden(lp, "SimulationRadius", math.huge)
                     end
                 end
             elseif getgenv().AttachBoss == "RobotBoss" then
@@ -857,7 +860,7 @@ RunService.RenderStepped:Connect(function()
                         v.Humanoid:ChangeState(15)
                         v.Humanoid.Health = die
                         v.Humanoid.Health = 0
-                        sethidden(localPlayers, "SimulationRadius", math.huge)
+                        sethidden(lp, "SimulationRadius", math.huge)
                     end
                 end
             end
@@ -872,7 +875,7 @@ RunService.RenderStepped:Connect(function()
                     v.Humanoid:ChangeState(15)
                     v.Humanoid.Health = die
                     v.Humanoid.Health = 0
-                    sethidden(localPlayers, "SimulationRadius", math.huge)
+                    sethidden(lp, "SimulationRadius", math.huge)
                 end
             end
         end)
