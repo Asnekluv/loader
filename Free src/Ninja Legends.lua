@@ -204,9 +204,9 @@ function equiptool()
     end
 end
 function Click()
-    game:GetService'VirtualUser':CaptureController()
-    game:GetService'VirtualUser':Button1Up(Vector2.new(1280, 672))
-    game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
+    VirtualUser:CaptureController()
+    VirtualUser:Button1Up(Vector2.new(1280, 672))
+    VirtualUser:Button1Down(Vector2.new(1280, 672))
 end
 function getRoot(char)
 	local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
