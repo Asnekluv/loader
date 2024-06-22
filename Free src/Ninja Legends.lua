@@ -14,7 +14,9 @@ do
     end
 end
 
-local cloneref = cloneref or function(obj) return obj end
+local cloneref = cloneref or function(...)
+    return ...
+end
 
 -- services
 local Players   = cloneref(game:GetService("Players"))
@@ -378,44 +380,41 @@ KillBoss:OnChanged(function(v)
     getgenv().TweenToBoss = v
     while getgenv().TweenToBoss do ktask.wait()
         pcall(function()
-            repeat
-                ktask.wait()
-                getgenv().Noclip = true
-                getgenv().BodyVelocity = true
-                if getgenv().AttachBoss == "AncientMagmaBoss" then
-                    for _,v in pairs(Workspace.bossFolder:GetChildren()) do
-                        if v.Name == "AncientMagmaBoss" and v:FindFirstChild("HumanoidRootPart") then
-                            v.HumanoidRootPart.Size = Vector3.new(150,150,150)
-                            toAroundTarget(v.HumanoidRootPart.CFrame)
-                            Click()
-                        end
-                    end
-                elseif getgenv().AttachBoss == "EternalBoss" then
-                    for _,v in pairs(Workspace.bossFolder:GetChildren()) do
-                        if v.Name == "EternalBoss" and v:FindFirstChild("HumanoidRootPart") then
-                            v.HumanoidRootPart.Size = Vector3.new(150,150,150)
-                            toAroundTarget(v.HumanoidRootPart.CFrame)
-                            Click()
-                        end
-                    end
-                elseif getgenv().AttachBoss == "RobotBoss" then
-                    for _,v in pairs(Workspace.bossFolder:GetChildren()) do
-                        if v.Name == "RobotBoss" and v:FindFirstChild("HumanoidRootPart") then
-                            v.HumanoidRootPart.Size = Vector3.new(150,150,150)
-                            toAroundTarget(v.HumanoidRootPart.CFrame)
-                            Click()
-                        end
+            getgenv().Noclip = true
+            getgenv().BodyVelocity = true
+            repeat ktask.wait()
+            if getgenv().AttachBoss == "AncientMagmaBoss" then
+                for _,v in pairs(Workspace.bossFolder:GetChildren()) do
+                    if v.Name == "AncientMagmaBoss" and v:FindFirstChild("HumanoidRootPart") then
+                        v.HumanoidRootPart.Size = Vector3.new(150,150,150)
+                        toAroundTarget(v.HumanoidRootPart.CFrame)
+                        Click()
                     end
                 end
-            until not getgenv().TweenToBoss or not v:FindFirstChild("HumanoidRootPart") or v:FindFirstChild("Humanoid").Health == 0 
-            if not getgenv().TweenToBoss then
-                getgenv().BodyVelocity = false
-                getgenv().Noclip = false
+            elseif getgenv().AttachBoss == "EternalBoss" then
+                for _,v in pairs(Workspace.bossFolder:GetChildren()) do
+                    if v.Name == "EternalBoss" and v:FindFirstChild("HumanoidRootPart") then
+                        v.HumanoidRootPart.Size = Vector3.new(150,150,150)
+                        toAroundTarget(v.HumanoidRootPart.CFrame)
+                        Click()
+                    end
+                end
+            elseif getgenv().AttachBoss == "RobotBoss" then
+                for _,v in pairs(Workspace.bossFolder:GetChildren()) do
+                    if v.Name == "RobotBoss" and v:FindFirstChild("HumanoidRootPart") then
+                        v.HumanoidRootPart.Size = Vector3.new(150,150,150)
+                        toAroundTarget(v.HumanoidRootPart.CFrame)
+                        Click()
+                    end
+                end
+            else
+                warn("ab ~= rbb ~= eb ~= am")
             end
+        until not getgenv().TweenToBoss or not v:FindFirstChildWhichIsA("Humanoid").Health <= 0 or not v:FindFirstChild("HumanoidRootPart")
         end)
     end
 end)
-local InstantBoss = Tabs.Boss:AddToggle("MyToggle", {Title = "Instant Kill Boss", Description = "Select Boss to Kill First", Default = false })
+local InstantBoss = Tabs.Boss:AddToggle("MyToggle", {Title = "Kill Boss", Description = "Select Boss to Kill First", Default = false })
 InstantBoss:OnChanged(function(v)
     getgenv().InstantBoss = v
 end)
@@ -446,8 +445,7 @@ Teleport2Lp:OnChanged(function(v)
             if getgenv().TeleportPly then
                 getgenv().Noclip = true
                 getgenv().BodyVelocity = true
-                repeat
-                    ktask.wait()
+                repeat ktask.wait()
                     toTarget(Players:FindFirstChild(getgenv().SelectPly).Character.HumanoidRootPart.CFrame * CFrame.new(0,0,5))
                 until not getgenv().TeleportPly
                 getgenv().Noclip = false
@@ -464,8 +462,7 @@ local SpectatePly = Tabs.Players:AddToggle("ToggleQuanSat", {
 SpectatePly:OnChanged(function(v)
     getgenv().SpectateSelect = v
     pcall(function()
-        repeat
-            wait()
+        repeat wait()
             Workspace.Camera.CameraSubject = Players:FindFirstChild(getgenv().SelectPly).Character:FindFirstChildOfClass("Humanoid")
         until getgenv().SpectateSelect == false
         Workspace.Camera.CameraSubject = Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
