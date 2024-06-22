@@ -454,7 +454,7 @@ local Tabs = {
     Players = Window:AddTab({ Title = "Players", Icon = "bar-chart-horizontal-big" }),
 }
 -- Toggle Main Tabs~
-local Main2 = Tabs.Main:AddToggle("", {Title = "Auto Farm", Description = "fully undetected and auto join battle and equip princess", Default = false})
+local Main2 = Tabs.Main:AddToggle("", {Title = "Auto Farm", Description = "fully undetected and auto join battle ...", Default = false})
 Main2:OnChanged(function(v)
     getgenv().Tween2mobs = v
     while getgenv().Tween2mobs do ktask.wait()
@@ -474,7 +474,7 @@ Main2:OnChanged(function(v)
                             if v:IsA("Model") and v:FindFirstChildOfClass("Humanoid") and v:FindFirstChildOfClass("Humanoid").Health > 0 then
                                 getgenv().BodyVelocity = true
                                 getgenv().Noclip = true
-                                game.Players.LocalPlayer.Character.PrimaryPart.CFrame = CFrame.new(v.PrimaryPart.Position + Vector3.new(0, 7, 0), v.PrimaryPart.Position)
+                                lp.Character.PrimaryPart.CFrame = CFrame.new(v.PrimaryPart.Position + Vector3.new(0, 7, 0), v.PrimaryPart.Position)
                                 --[[
                                 if lp:DistanceFromCharacter(v.PrimaryPart.Position) < 10 then
                                     game:GetService("ReplicatedStorage").Remote.Weapon.TakeDamage:FireServer()
@@ -485,7 +485,7 @@ Main2:OnChanged(function(v)
                     end
                 until not getgenv().Tween2mobs or lp.Character:FindFirstChild("Humanoid").Health <= 0
                 JoinBattle = 0
-                Players.LocalPlayer.Character:FindFirstChild("Humanoid"):ChangeState(15)
+                Players.LocalPlayer.Character:FindFirstChild("Humanoid"):ChangeState(15) -- < kill player after disable function for return loop~ (anti error 🐇)
             end
         end)
     end
@@ -518,8 +518,7 @@ Teleport2Lp:OnChanged(function(v)
                 if getgenv().TeleportPly and not getgenv().RenPosition then
                     getgenv().Noclip = true
                     getgenv().BodyVelocity = true
-                    repeat
-                        ktask.wait()
+                    repeat ktask.wait()
                         toTarget(Players:FindFirstChild(getgenv().SelectPly).Character.HumanoidRootPart.CFrame * CFrame.new(0,0,5))
                     until not getgenv().TeleportPly
                     getgenv().Noclip = false
@@ -907,28 +906,6 @@ spawn(function()
         end
     end)
 end)
-
-do
-    print("reset config")
-    shared.Configs = {
-        ["Global_Setting"] = {
-            ["AntiAFK"] = false,
-            ["NoclipCamera"] = false,
-            ["RandomName"] = false
-        }
-    }
-    print("done",tick())
-end
-
--- ! key bind ui
-NotificationLoad:NewNotification({
-    ["Mode"] = "Info", -- Choose one (Success/Info/Error)
-    ["Title"] = "Key Bind", -- Title of notification
-    ["Description"] = "ur MinimizeKey is RightShift", -- Description of notification
-    ["Timeout"] = 10, -- How long the notification will last (Change to false if you want no timer)
-    ["Audio"] = true -- Plays audio if enabled on each notification
-})
-
 -- ene of line
 SaveManager:SetLibrary(Fluent)
 InterfaceManager:SetLibrary(Fluent)
