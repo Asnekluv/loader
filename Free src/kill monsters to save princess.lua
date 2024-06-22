@@ -475,11 +475,9 @@ Main2:OnChanged(function(v)
                                 getgenv().BodyVelocity = true
                                 getgenv().Noclip = true
                                 lp.Character.PrimaryPart.CFrame = CFrame.new(v.PrimaryPart.Position + Vector3.new(0, 7, 0), v.PrimaryPart.Position)
-                                --[[
                                 if lp:DistanceFromCharacter(v.PrimaryPart.Position) < 10 then
-                                    game:GetService("ReplicatedStorage").Remote.Weapon.TakeDamage:FireServer()
+                                    ReplicatedStorage.Remote.Weapon.TakeDamage:FireServer()
                                 end
-                                ]]--
                             end
                         end
                     end
@@ -774,13 +772,6 @@ spawn(function()
 end)
 
 -- RunService
-RunService.RenderStepped:Connect(function() 
-    pcall(function()
-        if getgenv().Tween2mobs then
-            ReplicatedStorage:WaitForChild("Remote"):WaitForChild("Weapon"):WaitForChild("TakeDamage"):FireServer()
-        end
-    end)
-end)
 RunService.RenderStepped:Connect(function()
     pcall(function()
         if getgenv().Tween2mobs then
