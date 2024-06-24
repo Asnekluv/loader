@@ -1,7 +1,5 @@
 -- variables
-local First = tick()
 local gameList = loadstring(game:HttpGet("https://asuneki.netlify.app/assets/lua/library.luau"))()
-
 local loadertime = 0
 
 repeat wait() until game:IsLoaded()
@@ -22,5 +20,3 @@ end, function(err)
     return nil
     end)
 end
-
-print("Took ", tick() - First, " To Load <3")
