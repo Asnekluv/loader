@@ -17,6 +17,5 @@ while true do
     end
 end, function(err)
     print("Error loading script:", err)
-    return nil
     end)
 end
